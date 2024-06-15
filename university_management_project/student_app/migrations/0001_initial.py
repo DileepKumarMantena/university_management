@@ -42,7 +42,7 @@ class Migration(migrations.Migration):
                 ('quality_rating', models.FloatField(blank=True, null=True)),
                 ('issue_date', models.DateTimeField()),
                 ('acknowledgment_date', models.DateTimeField(blank=True, null=True)),
-                ('vendor', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='university_management_app.vendor_model')),
+                ('vendor', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='student_app.vendor_model')),
             ],
             options={
                 'db_table': 'PurchaseOrder_Table',
@@ -57,7 +57,7 @@ class Migration(migrations.Migration):
                 ('quality_rating_avg', models.FloatField()),
                 ('average_response_time', models.FloatField()),
                 ('fulfillment_rate', models.FloatField()),
-                ('vendor', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='university_management_app.vendor_model')),
+                ('vendor', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='student_app.vendor_model')),
             ],
             options={
                 'db_table': 'HistoricalPerformance_Table',
