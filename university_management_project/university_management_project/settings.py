@@ -22,9 +22,6 @@ LOGOUT_REDIRECT_URL = 'home'
 
 
 
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR,'static')]
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
@@ -32,9 +29,9 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR,'static')]
 SECRET_KEY = 'django-insecure-f6g6&^r7d-%0(=7&6dnbx^l)&ru2da=@f&!fgf#598d_nb9jl2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['DileepKumarMantena.pythonanywhere.com']
 
 
 # Application definition
@@ -50,6 +47,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'drf_yasg',
 ]
+
+STATIC_ROOT = '/home/DileepKumarMantena/university_management_project/static/'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
