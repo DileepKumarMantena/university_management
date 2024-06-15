@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Student</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin-bottom: 20px;
+            border-radius: 8px 8px 0 0;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        form {
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"], input[type="email"], input[type="date"], input[type="number"], select, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus, input[type="email"]:focus, input[type="date"]:focus, input[type="number"]:focus, select:focus, textarea:focus {
+            border-color: #333;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-header {
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .modal-body {
+            padding: 20px;
+        }
+
+        .modal-footer {
+            padding-top: 10px;
+            border-top: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <header>
+    </header>
+    <div class="container">
+        <form id="registerForm" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_student_id">Student ID:</label>
+                {{ form.student_id }}
+            </div>
+            <div class="form-group">
+                <label for="id_first_name">First Name:</label>
+                {{ form.first_name }}
+            </div>
+            <div class="form-group">
+                <label for="id_last_name">Last Name:</label>
+                {{ form.last_name }}
+            </div>
+            <div class="form-group">
+                <label for="id_date_of_birth">Date of Birth:</label>
+                {{ form.date_of_birth }}
+            </div>
+            <div class="form-group">
+                <label for="id_gender">Gender:</label>
+                {{ form.gender }}
+            </div>
+            <div class="form-group">
+                <label for="id_email">Email:</label>
+                {{ form.email }}
+            </div>
+            <div class="form-group">
+                <label for="id_phone_number">Phone Number:</label>
+                {{ form.phone_number }}
+            </div>
+            <div class="form-group">
+                <label for="id_address">Address:</label>
+                {{ form.address }}
+            </div>
+            <div class="form-group">
+                <label for="id_enrollment_date">Enrollment Date:</label>
+                {{ form.enrollment_date }}
+            </div>
+            <div class="form-group">
+                <label for="id_program">Program:</label>
+                {{ form.program }}
+            </div>
+            <div class="form-group">
+                <label for="id_year_of_study">Year of Study:</label>
+                {{ form.year_of_study }}
+            </div>
+            <div class="form-group">
+                <label for="id_gpa">GPA:</label>
+                {{ form.gpa }}
+            </div>
+            <div class="form-group">
+                <label for="id_profile_picture">Profile Picture:</label>
+                {{ form.profile_picture }}
+            </div>
+            <div class="form-group">
+                <label for="id_is_active">Active:</label>
+                {{ form.is_active }}
+            </div>
+            <button type="submit" id="registerButton" class="btn btn-primary">Register</button>
+        </form>
+    </div>
+
+    <!-- Modal for displaying student details -->
+    <div id="studentDetailsModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-header">
+                <h2>Student Details</h2>
+            </div>
+            <div class="modal-body">
+                <p><strong>Student ID:</strong> <span id="studentId"></span></p>
+                <p><strong>Program:</strong> <span id="studentProgram"></span></p>
+                <!-- Add more details here -->
+            </div>
+            <div class="modal-footer">
+                <button id="goBackButton" class="btn btn-primary">Go Back</button>
+                <button id="confirmRegister" class="btn btn-success">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript code to handle form submission and modal display
+        document.addEventListener('DOMContentLoaded', function() {
+            var registerForm = document.getElementById('registerForm');
+            var modal = document.getElementById('studentDetailsModal');
+            var closeBtn = document.getElementsByClassName('close')[0];
+            var goBackButton = document.getElementById('goBackButton');
+            var confirmRegister = document.getElementById('confirmRegister');
+
+            registerForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent form submission
+
+                // Fetch form data
+                var formData = new FormData(registerForm);
+
+                // Display modal with student details
+                document.getElementById('studentId').textContent = formData.get('student_id');
+                document.getElementById('studentProgram').textContent = formData.get('program');
+
+                modal.style.display = 'block';
+            });
+
+            closeBtn.addEventListener('click', function() {
+                modal.style.display = 'none';
+            });
+
+            goBackButton.addEventListener('click', function() {
+                modal.style.display = 'none';
+            });
+
+            confirmRegister.addEventListener('click', function() {
+                // Ensure form is submitted
+                registerForm.submit();
+            });
+        });
+    </script>
+</body>
+</html>
