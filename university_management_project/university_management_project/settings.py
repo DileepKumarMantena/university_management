@@ -17,6 +17,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 import os
 
+LOGIN_REDIRECT_URL = 'student_list'
+LOGOUT_REDIRECT_URL = 'home'
+
+
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR,'static')]
