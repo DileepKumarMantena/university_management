@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Program List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        a {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            text-decoration: none;
+            color: #007bff; /* Bootstrap primary color */
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Program List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Program ID</th>
+                <th>Name</th>
+                <th>Code</th>
+                <th>Description</th>
+                <th>Duration (Years)</th>
+                <th>Department</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for program in programs %}
+            <tr>
+                <td>{{ program.program_id }}</td>
+                <td>{{ program.name }}</td>
+                <td>{{ program.code }}</td>
+                <td>{{ program.description }}</td>
+                <td>{{ program.duration_years }}</td>
+                <td>{{ program.department.name }}</td>  <!-- Assuming department has a 'name' field -->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'register_program' %}">Register a New Program</a>
+</body>
+</html>

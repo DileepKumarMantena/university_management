@@ -3,14 +3,14 @@ from .models import *
 from django.contrib.auth.models import *
 from django.contrib.auth.forms import *
 
-
+# students forms
 class StudentRegistrationForm(forms.ModelForm):
     class Meta:
         model = Student
         fields = '__all__' 
 
 
-
+#Registration and login forms
 
 class RegistrationForm(UserCreationForm):
     email = forms.EmailField(required=True)
@@ -49,3 +49,23 @@ class LoginForm(AuthenticationForm):
                     else:
                         raise forms.ValidationError("Invalid login credentials")
         return cleaned_data
+
+
+#Department forms
+class DepartmentForm(forms.ModelForm):
+    class Meta:
+        model = Department
+        fields = ['name', 'description']
+
+#Program forms
+class ProgramForm(forms.ModelForm):
+    class Meta:
+        model = Program
+        fields = "__all__"
+
+## Faculty views 
+
+class FacultyRegistrationForm(forms.ModelForm):
+    class Meta:
+        model = Faculty
+        fields = '__all__' 

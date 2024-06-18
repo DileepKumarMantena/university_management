@@ -29,9 +29,14 @@ LOGOUT_REDIRECT_URL = 'home'
 SECRET_KEY = 'django-insecure-f6g6&^r7d-%0(=7&6dnbx^l)&ru2da=@f&!fgf#598d_nb9jl2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
 
-ALLOWED_HOSTS = ['DileepKumarMantena.pythonanywhere.com']
+#For python anywhere
+# DEBUG = False
+# ALLOWED_HOSTS = ['DileepKumarMantena.pythonanywhere.com']
+
+#For Dev 
+DEBUG = True
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 # Application definition
