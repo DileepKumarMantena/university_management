@@ -126,34 +126,32 @@ def register_faculty(request):
         form = FacultyRegistrationForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('student_list') 
+            return redirect('faculty_list') 
     else:
-        form = FacultyRegistrationForm()
-    return render(request, 'register_student.html', {'form': form})
+        faculty = FacultyRegistrationForm()
+    return render(request, 'register_faculty.html', {'faculty': faculty})
 
-@login_required
-def student_list(request):
-    username = request.user.username 
-    students = Student.objects.all()
-    return render(request, 'student_list.html', {'students': students, 'username': username})
+def faculty_list(request):
+    faculty = Faculty.objects.all()
+    return render(request, 'faculty_list.html', {'faculty': faculty})
 
-def edit_student(request, student_id):
-    student = get_object_or_404(Student, id=student_id)
+def edit_faculty(request, student_id):
+    faculty = get_object_or_404(Faculty, id=student_id)
     if request.method == 'POST':
-        form = StudentRegistrationForm(request.POST, request.FILES, instance=student)
+        form = FacultyRegistrationForm(request.POST, request.FILES, instance=faculty)
         if form.is_valid():
             form.save()
-            return redirect('student_list')  # Redirect to student list or success page
+            return redirect('faculty_list')  # Redirect to student list or success page
     else:
-        form = StudentRegistrationForm(instance=student)
+        form = FacultyRegistrationForm(instance=faculty)
     
-    return render(request, 'edit_student.html', {'form': form})
+    return render(request, 'edit_faculty.html', {'form': form})
 
-def delete_student(request, student_id):
-    student = get_object_or_404(Student, id=student_id)
+def delete_faculty(request, student_id):
+    faculty = get_object_or_404(Student, id=student_id)
     if request.method == 'POST':
-        student.delete()
-        return redirect('student_list')  # Redirect to student list or success page
+        faculty.delete()
+        return redirect('faculty_list')  # Redirect to faculty list or success page
     
-    return render(request, 'confirm_delete.html', {'student': student})
+    return render(request, 'confirm_delete.html', {'faculty': faculty})
 

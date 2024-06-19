@@ -177,10 +177,6 @@
                 {{ form.email }}
             </div>
             <div class="form-group">
-                <label for="id_phone_number">Phone Number:</label>
-                {{ form.phone_number }}
-            </div>
-            <div class="form-group">
                 <label for="id_address">Address:</label>
                 {{ form.address }}
             </div>
@@ -200,17 +196,17 @@
         </form>
     </div>
 
-    <!-- Modal for displaying student details -->
-    <div id="studentDetailsModal" class="modal">
+    <!-- Modal for displaying faculty details -->
+    <div id="facultyDetailsModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
             <div class="modal-header">
-                <h2>Student Details</h2>
+                <h2>Faculty Details</h2>
             </div>
             <div class="modal-body">
-                <p><strong>Student ID:</strong> <span id="studentId"></span></p>
-                <p><strong>Program:</strong> <span id="studentProgram"></span></p>
-                <!-- Add more details here -->
+                <p><strong>Faculty ID:</strong> <span id="facultyId"></span></p>
+                <p><strong>First Name:</strong> <span id="facultyFirstName"></span></p>
+                <!-- Add more details here if needed -->
             </div>
             <div class="modal-footer">
                 <button id="goBackButton" class="btn btn-primary">Go Back</button>
@@ -223,7 +219,7 @@
         // JavaScript code to handle form submission and modal display
         document.addEventListener('DOMContentLoaded', function() {
             var registerForm = document.getElementById('registerForm');
-            var modal = document.getElementById('studentDetailsModal');
+            var modal = document.getElementById('facultyDetailsModal');
             var closeBtn = document.getElementsByClassName('close')[0];
             var goBackButton = document.getElementById('goBackButton');
             var confirmRegister = document.getElementById('confirmRegister');
@@ -234,9 +230,9 @@
                 // Fetch form data
                 var formData = new FormData(registerForm);
 
-                // Display modal with student details
-                document.getElementById('studentId').textContent = formData.get('student_id');
-                document.getElementById('studentProgram').textContent = formData.get('program');
+                // Display modal with faculty details
+                document.getElementById('facultyId').textContent = formData.get('faculty_id');
+                document.getElementById('facultyFirstName').textContent = formData.get('first_name');
 
                 modal.style.display = 'block';
             });

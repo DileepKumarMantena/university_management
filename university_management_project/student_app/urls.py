@@ -21,6 +21,12 @@ urlpatterns = [
     #programs urls
     path('register_program/', views.register_program, name='register_program'),
     path('programs_list/', views.program_list, name='programs_list'),
+    
+    #faculty urls
+    path('register_faculty/', views.register_faculty, name='register_faculty'),
+    path('faculty_list/', views.faculty_list, name='faculty_list'),
+    path('faculty/edit/<int:faculty_id>/', views.edit_faculty, name='edit_faculty'),
+    path('faculty/delete/<int:student_id>/', views.delete_faculty, name='delete_faculty'),
 
 
 ]
