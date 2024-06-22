@@ -14,12 +14,13 @@
         }
 
         .container {
-            width: 80%;
+            width: 90%;
             margin: 20px auto;
             background-color: #fff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
             padding: 20px;
+            overflow-x: auto; /* Allow horizontal scrolling on smaller screens */
         }
 
         h1 {
@@ -28,7 +29,7 @@
         }
 
         table {
-            width: 100%;
+            width: 100%; /* Ensure table takes full width of container */
             border-collapse: collapse;
             margin-top: 20px;
         }
@@ -90,42 +91,45 @@
             <a href="{% url 'register_faculty' %}" class="btn btn-success">Add Faculty</a>
         </div>
         
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>faculty_id</th>
-                    <th>first_name</th>
-                    <th>last_name</th>
-                    <th>date_of_birth</th>
-                    <th>email</th>
-                    <th>phone_number</th>
-                    <th>address</th>
-                    <th>joining_date</th>
-                    <th>department</th>
-                    <th>rank</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for faculty in facultys %}
-                <tr>
-                    <td>{{ faculty.faculty_id }}</td>
-                    <td>{{ faculty.first_name }} </td>
-                    <td>{{ faculty.last_name }}</td>
-                    <td>{{ faculty.date_of_birth }}</td>
-                    <td>{{ faculty.email }}</td>
-                    <td>{{ faculty.phone_number }}</td>
-                    <td>{{ faculty.address }}</td>
-                    <td>{{ faculty.joining_date }}</td>
-                    <td>{{ faculty.department }}</td>
-                    <td>{{ form.rank }}</td>
-                    <td clas s="action-links">
-                        <a href="{% url 'edit_faculty' faculty_id %}">Edit</a> | 
-                        <a href="{% url 'delete_faculty' faculty_id %}" class="delete-link">Delete</a>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+        <div class="table-responsive"> <!-- Wrap table with table-responsive -->
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>faculty_id</th>
+                        <th>first_name</th>
+                        <th>last_name</th>
+                        <th>date_of_birth</th>
+                        <th>email</th>
+                        <th>phone_number</th>
+                        <th>address</th>
+                        <th>joining_date</th>
+                        <th>department</th>
+                        <th>rank</th>
+                        <th>actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for faculty in faculties %}
+                    <tr>
+                        <td>{{ faculty.faculty_id }}</td>
+                        <td>{{ faculty.first_name }}</td>
+                        <td>{{ faculty.last_name }}</td>
+                        <td>{{ faculty.date_of_birth }}</td>
+                        <td>{{ faculty.email }}</td>
+                        <td>{{ faculty.phone_number }}</td>
+                        <td>{{ faculty.address }}</td>
+                        <td>{{ faculty.joining_date }}</td>
+                        <td>{{ faculty.department }}</td>
+                        <td>{{ faculty.rank }}</td>
+                        <td class="action-links">
+                            <a href="{% url 'edit_faculty' faculty.id %}">Edit</a> | 
+                            <a href="{% url 'delete_faculty' faculty.id %}" class="delete-link">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
 </body>
 </html>

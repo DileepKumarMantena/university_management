@@ -132,11 +132,11 @@ def register_faculty(request):
     return render(request, 'register_faculty.html', {'faculty': faculty})
 
 def faculty_list(request):
-    faculty = Faculty.objects.all()
-    return render(request, 'faculty_list.html', {'faculty': faculty})
+    faculties = Faculty.objects.all()
+    return render(request, 'faculty_list.html', {'faculties': faculties})
 
-def edit_faculty(request, student_id):
-    faculty = get_object_or_404(Faculty, id=student_id)
+def edit_faculty(request, faculty_id):
+    faculty = get_object_or_404(Faculty, id=faculty_id)
     if request.method == 'POST':
         form = FacultyRegistrationForm(request.POST, request.FILES, instance=faculty)
         if form.is_valid():
@@ -147,11 +147,11 @@ def edit_faculty(request, student_id):
     
     return render(request, 'edit_faculty.html', {'form': form})
 
-def delete_faculty(request, student_id):
-    faculty = get_object_or_404(Student, id=student_id)
+def delete_faculty(request, faculty_id):
+    faculty = get_object_or_404(Student, id=faculty_id)
     if request.method == 'POST':
         faculty.delete()
         return redirect('faculty_list')  # Redirect to faculty list or success page
     
-    return render(request, 'confirm_delete.html', {'faculty': faculty})
+    return render(request, 'confirm_delete_faculty.html', {'faculty': faculty})
 

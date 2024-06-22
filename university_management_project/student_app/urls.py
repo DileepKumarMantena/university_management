@@ -26,7 +26,7 @@ urlpatterns = [
     path('register_faculty/', views.register_faculty, name='register_faculty'),
     path('faculty_list/', views.faculty_list, name='faculty_list'),
     path('faculty/edit/<int:faculty_id>/', views.edit_faculty, name='edit_faculty'),
-    path('faculty/delete/<int:student_id>/', views.delete_faculty, name='delete_faculty'),
+    path('faculty/delete/<int:faculty_id>/', views.delete_faculty, name='delete_faculty'),
 
 
 ]
