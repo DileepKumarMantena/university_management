@@ -65,3 +65,6 @@ class Faculty(models.Model):
 
     class Meta:
         db_table = "Faculty_Table"
+
+
+
