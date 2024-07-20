@@ -155,3 +155,24 @@ def delete_faculty(request, faculty_id):
     
     return render(request, 'confirm_delete_faculty.html', {'faculty': faculty})
 
+##Admin Registration
+
+def admin_register(request):
+    if request.method == 'POST':
+        form = AdminRegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('admin_login')
+    else:
+        form = AdminRegistrationForm()
+    return render(request, 'admin_register.html', {'form': form})
+
+def admin_login(request):
+    return redirect('login')
+
+@login_required
+def admin_dashboard(request):
+    if not request.user.is_staff:
+        return redirect('home')
+    return render(request, 'admin_dashboard.html')
+
