@@ -109,14 +109,14 @@ def register_program(request):
         form = ProgramForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('programs_list')  # Redirect to the Programs  list after saving
+            return redirect('program_list')  # Redirect to the Programs  list after saving
     else:
         form = ProgramForm()
     return render(request, 'register_program.html', {'form': form})
 
 def program_list(request):
     programs = Program.objects.all()
-    return render(request, 'programs_list.html', {'programs': programs})
+    return render(request, 'program_list.html', {'programs': programs})
 
 
 ### faculty views
@@ -128,8 +128,8 @@ def register_faculty(request):
             form.save()
             return redirect('faculty_list') 
     else:
-        faculty = FacultyRegistrationForm()
-    return render(request, 'register_faculty.html', {'faculty': faculty})
+        form = FacultyRegistrationForm()
+    return render(request, 'register_faculty.html', {'form': form})
 
 def faculty_list(request):
     faculties = Faculty.objects.all()

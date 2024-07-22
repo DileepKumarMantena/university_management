@@ -92,7 +92,6 @@
             background-color: #45a049;
         }
 
-        /* Modal styles */
         .modal {
             display: none;
             position: fixed;
@@ -147,8 +146,6 @@
     </style>
 </head>
 <body>
-    <header>
-    </header>
     <div class="container">
         <form id="registerForm" method="post" enctype="multipart/form-data">
             {% csrf_token %}
@@ -192,7 +189,10 @@
                 <label for="id_rank">Rank:</label>
                 {{ form.rank }}
             </div>
-            <button type="submit" id="registerButton" class="btn btn-primary">Register</button>
+            <div class="form-group">
+                <button type="submit" id="registerButton" class="btn btn-primary">Register</button>
+                <a href="{% url 'faculty_list' %}" class="btn btn-secondary">Go Back</a>
+            </div>
         </form>
     </div>
 

@@ -62,6 +62,15 @@
             margin-top: 20px;
             display: inline-block;
             text-decoration: none;
+            color: #007bff;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+        .redirect-button:hover {
+            color: #0056b3;
         }
     </style>
 </head>
@@ -72,11 +81,8 @@
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit">Register</button>
-            <a href="{% url 'admin_login' %}" class="redirect-button">
-                <button>Go to Admin Login</button>
-            </a>
+            <a href="{% url 'admin_login' %}" class="redirect-button">Go to Admin Login</a>
         </form>
-        
     </div>
 </body>
 </html>

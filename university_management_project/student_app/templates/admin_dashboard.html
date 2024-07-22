@@ -4,79 +4,135 @@
     <title>Admin Dashboard</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
         }
-        h2 {
-            color: #333;
-        }
+
         .container {
             max-width: 800px;
-            margin: 0 auto;
+            margin: 40px auto;
             padding: 20px;
             background-color: #fff;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            animation: slideIn 0.5s ease-out;
         }
+
+        h2, h3 {
+            color: #333;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 5px;
+        }
+
         h3 {
-            margin-top: 20px;
-            color: #444;
+            margin-top: 30px;
         }
+
         ul {
             list-style: none;
             padding: 0;
         }
+
         ul li {
-            margin: 10px 0;
+            margin: 15px 0;
         }
+
         a {
             text-decoration: none;
             color: #007bff;
+            display: inline-block;
+            padding: 10px 15px;
+            border: 1px solid #007bff;
+            border-radius: 4px;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
+
         a:hover {
-            text-decoration: underline;
+            background-color: #007bff;
+            color: #fff;
         }
+
         .fade-in {
             opacity: 0;
             animation: fadeIn 1s forwards;
         }
+
         @keyframes fadeIn {
             to {
                 opacity: 1;
             }
         }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .welcome-message {
+            text-align: center;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            color: #444;
+        }
+
+        .management-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .management-section ul {
+            flex: 1 1 calc(50% - 10px);
+            margin: 10px;
+            background-color: #e9ecef;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .management-section ul:hover {
+            transform: translateY(-5px);
+        }
     </style>
 </head>
 <body>
     <div class="container fade-in">
-        <h2>Admin Dashboard</h2>
-        <p>Welcome, {{ user.username }}!</p>
+        <p class="welcome-message">Welcome, {{ user.username }}!</p>
 
-        <h3>Student Management</h3>
-        <ul>
-            <li><a href="{% url 'register_student' %}">Register Student</a></li>
-            <li><a href="{% url 'student_list' %}">Student List</a></li>
-        </ul>
+        <div class="management-section">
+            <ul>
+                <h3>Student Management</h3>
+                <li><a href="{% url 'register_student' %}">Register Student</a></li>
+                <li><a href="{% url 'student_list' %}">Student List</a></li>
+            </ul>
 
-        <h3>Department Management</h3>
-        <ul>
-            <li><a href="{% url 'register_department' %}">Register Department</a></li>
-            <li><a href="{% url 'department_list' %}">Department List</a></li>
-        </ul>
+            <ul>
+                <h3>Department Management</h3>
+                <li><a href="{% url 'register_department' %}">Register Department</a></li>
+                <li><a href="{% url 'department_list' %}">Department List</a></li>
+            </ul>
 
-        <h3>Program Management</h3>
-        <ul>
-            <li><a href="{% url 'register_program' %}">Register Program</a></li>
-            <li><a href="{% url 'program_list' %}">Program List</a></li>
-        </ul>
+            <ul>
+                <h3>Program Management</h3>
+                <li><a href="{% url 'register_program' %}">Register Program</a></li>
+                <li><a href="{% url 'program_list' %}">Program List</a></li>
+            </ul>
 
-        <h3>Faculty Management</h3>
-        <ul>
-            <li><a href="{% url 'register_faculty' %}">Register Faculty</a></li>
-            <li><a href="{% url 'faculty_list' %}">Faculty List</a></li>
-        </ul>
+            <ul>
+                <h3>Faculty Management</h3>
+                <li><a href="{% url 'register_faculty' %}">Register Faculty</a></li>
+                <li><a href="{% url 'faculty_list' %}">Faculty List</a></li>
+            </ul>
+        </div>
     </div>
 </body>
 </html>

@@ -73,6 +73,11 @@
             border-color: #333;
         }
 
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+        }
+
         button {
             background-color: #4CAF50;
             color: white;
@@ -82,7 +87,6 @@
             text-decoration: none;
             display: inline-block;
             font-size: 16px;
-            margin-top: 10px;
             cursor: pointer;
             border-radius: 4px;
             transition: background-color 0.3s ease;
@@ -90,6 +94,15 @@
 
         button:hover {
             background-color: #45a049;
+        }
+
+        .btn-secondary {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #0056b3;
         }
 
         /* Modal styles */
@@ -208,7 +221,10 @@
                 <label for="id_is_active">Active:</label>
                 {{ form.is_active }}
             </div>
-            <button type="submit" id="registerButton" class="btn btn-primary">Register</button>
+            <div class="button-group">
+                <button type="submit" id="registerButton" class="btn btn-primary">Register</button>
+                <a href="{% url 'student_list' %}" class="btn btn-secondary">Go Back</a>
+            </div>
         </form>
     </div>
 

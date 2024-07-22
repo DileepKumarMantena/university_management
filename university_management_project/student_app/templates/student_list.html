@@ -80,6 +80,16 @@
         .delete-link:hover {
             text-decoration: underline;
         }
+
+        .extra-links {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .extra-links a {
+            margin: 5px;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
@@ -126,6 +136,10 @@
                 {% endfor %}
             </tbody>
         </table>
+
+        <div class="extra-links">
+            <a href="{% url 'admin_dashboard' %}" class="btn btn-success">Admin Dashboard</a>
+        </div>
     </div>
 </body>
 </html>
