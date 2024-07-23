@@ -20,57 +20,83 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
             padding: 20px;
+            opacity: 0;
+            animation: fadeIn 0.5s forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
         }
 
         h1 {
             text-align: center;
             margin-bottom: 20px;
+            color: #333;
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            border-radius: 8px;
         }
 
         th, td {
-            padding: 10px;
+            padding: 12px;
             text-align: left;
             border-bottom: 1px solid #ddd;
         }
 
         th {
             background-color: #f2f2f2;
+            color: #666;
         }
 
         tr:hover {
-            background-color: #f2f2f2;
+            background-color: rgba(0, 123, 255, 0.1);
+            transition: background-color 0.3s ease;
         }
 
         .add-button {
-            display: block;
+            display: inline-block;
             width: 120px;
             margin: 20px auto;
             padding: 10px;
             text-align: center;
-            background-color: #4CAF50;
+            background-color: #007bff;
             color: white;
             text-decoration: none;
             border-radius: 4px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 123, 255, 0.1);
         }
 
         .add-button:hover {
-            background-color: #45a049;
+            background-color: #0056b3;
+            transform: scale(1.05);
         }
 
         .action-links a {
             margin-right: 10px;
             text-decoration: none;
             color: #007bff; /* Bootstrap primary color */
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
         }
 
         .action-links a:hover {
             text-decoration: underline;
+        }
+
+        .action-links:hover a {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .delete-link {
@@ -89,16 +115,25 @@
         .extra-links a {
             margin: 5px;
             text-decoration: none;
+            color: #007bff;
+            border: 1px solid #007bff;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .extra-links a:hover {
+            background-color: #007bff;
+            color: white;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Student List</h1>
-        UserName:<strong>{{ username }}</strong>
         <div class="d-flex justify-content-end mb-3">
             <a href="{% url 'logout' %}" class="btn btn-danger mr-2">Logout</a>
-            <a href="{% url 'register_student' %}" class="btn btn-success">Add Student</a>
+            <a href="{% url 'register_student' %}" class="btn btn-success add-button">Add Student</a>
         </div>
         
         <table class="table table-striped">
@@ -129,8 +164,8 @@
                     <td>{{ student.year_of_study }}</td>
                     <td>{{ student.gpa }}</td>
                     <td class="action-links">
-                        <a href="{% url 'edit_student' student.id %}">Edit</a> | 
-                        <a href="{% url 'delete_student' student.id %}" class="delete-link">Delete</a>
+                        <a href="{% url 'edit_student' student.id %}" class="btn btn-sm btn-primary">Edit</a>
+                        <a href="{% url 'delete_student' student.id %}" class="btn btn-sm btn-danger delete-link">Delete</a>
                     </td>
                 </tr>
                 {% endfor %}
@@ -138,8 +173,26 @@
         </table>
 
         <div class="extra-links">
-            <a href="{% url 'admin_dashboard' %}" class="btn btn-success">Admin Dashboard</a>
+            <a href="{% url 'admin_dashboard' %}" class="btn btn-outline-primary">Admin Dashboard</a>
         </div>
     </div>
+
+    <script>
+        // Show action links on hover
+        document.querySelectorAll('.action-links').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.querySelectorAll('a').forEach(link => {
+                    link.style.opacity = '1';
+                    link.style.transform = 'translateY(0)';
+                });
+            });
+            item.addEventListener('mouseleave', function() {
+                this.querySelectorAll('a').forEach(link => {
+                    link.style.opacity = '0';
+                    link.style.transform = 'translateY(20px)';
+                });
+            });
+        });
+    </script>
 </body>
 </html>
